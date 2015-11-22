@@ -1,5 +1,6 @@
 package com.hbiede.MinWage;
 
+import com.hbiede.MinWage.Sim.Math;
 import com.hbiede.MinWage.Sim.Sim;
 import com.hbiede.MinWage.entities.Business;
 import com.hbiede.MinWage.entities.Peep;
@@ -21,9 +22,9 @@ public class MinWageMain {
 		initPeeps();
 		for (int i = 1; i <= Reference.cycleCount; i++) {
 			Sim.simPayPeriod();
-			System.out.printf("Cycle #%d%n", i);
+			if (!Reference.isDebugOn) System.out.printf("Cycle #%d%n", i);
 		}
-
+		Math.math();
 
 	}
 
@@ -41,23 +42,15 @@ public class MinWageMain {
 		int    randWage;
 		Random rand = new Random();
 		for (int i = 0; i <= Reference.peepCount - 1; i++) {
-			randFrugality = rand.nextInt(20) + 81;
+			randFrugality = rand.nextInt(3) + 98;
 			business = rand.nextInt(businessArray.length);
 			randWageTest = rand.nextInt(4);
 			if (randWageTest == 0) {
 				randWage = (rand.nextInt(Reference.minimumWage * Reference.maxWageFactor) + Reference.minimumWage);
-				peepArray[i] = new Peep(randFrugality, randWage, businessArray[business]);
 			} else {
-				randWageTest = rand.nextInt(66);
-				if (randWageTest <= Reference.unemploymentRate) {
-					randWage = 0;
-					randFrugality = 0;
-					peepArray[i] = new Peep(randFrugality, randWage, null);
-				} else {
 					randWage = Reference.minimumWage;
-					peepArray[i] = new Peep(randFrugality, randWage, businessArray[business]);
-				}
 			}
+			peepArray[i] = new Peep(randFrugality, randWage, businessArray[business]);
 			if (Reference.isDebugOn)
 				System.out.printf("Peep #%d, %d, $%d, Business #%d%n", i, randFrugality, randWage, business);
 		}

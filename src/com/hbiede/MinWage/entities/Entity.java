@@ -15,7 +15,7 @@ public abstract class Entity {
 		this.isAfloat = true;
 	}
 
-	public abstract void incomeDeposit(int incomeAmount);
+	public abstract void incomeDeposit(float incomeAmount);
 
-	public abstract void spend(int spendAmount);
+	public abstract void spend(float spendAmount);
 }

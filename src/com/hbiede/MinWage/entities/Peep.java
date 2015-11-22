@@ -10,6 +10,7 @@ import com.hbiede.MinWage.Reference;
 
 public class Peep extends Entity {
 	public final int      frugality;
+	public final int startingWage;
 	public       Business job;
 	public       int      wage;
 
@@ -17,17 +18,24 @@ public class Peep extends Entity {
 		super(Reference.startBalancePeep);
 		this.frugality = f;
 		this.wage = wage;
+		this.startingWage = wage;
 		this.job = job;
 
 	}
 
+	/**
+	 * @param incomeAmount Amount to add to a bank balance
+	 */
 	@Override
-	public void incomeDeposit(int incomeAmount) {
-		bankBalance = bankBalance + incomeAmount;
+	public void incomeDeposit(float incomeAmount) {
+		bankBalance += incomeAmount;
 	}
 
+	/**
+	 * @param spendAmount Amount to subtract from the bank balance
+	 */
 	@Override
-	public void spend(int spendAmount) {
-		bankBalance = bankBalance - spendAmount;
+	public void spend(float spendAmount) {
+		bankBalance -= spendAmount;
 	}
 }
