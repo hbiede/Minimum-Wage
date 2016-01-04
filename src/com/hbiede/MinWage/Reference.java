@@ -9,7 +9,7 @@ package com.hbiede.MinWage;
 public class Reference {
 	public static final boolean isDebugOn = false;
 
-	public static final int minimumWage   = 2;
+	public static final int minimumWage = 3;
 	public static final int   minimumSpendingCap   = 300;
 	public static final int   maxWageFactor        = 1;
 	public static final int peepCount     = 10000;
