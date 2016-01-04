@@ -16,14 +16,33 @@ import java.util.Random;
 public class MinWageMain {
 	public static Peep[]     peepArray     = new Peep[Reference.peepCount];
 	public static Business[] businessArray = new Business[Reference.businessCount];
+	public static int cycleCount;
+	public static int businessesAfloat = Reference.businessCount;
+	public static int businessesAfloatPrevious;
+	public static int peepsAfloat = Reference.peepCount;
+	public static int peepsAfloatPrevious;
 
 	public static void main(String[] args) {
+		cycleCount = 0;
 		initBusinesses();
 		initPeeps();
-		for (int i = 1; i <= Reference.cycleCount; i++) {
+		do {
+			cycleCount++;
 			Sim.simPayPeriod();
-			if (!Reference.isDebugOn) System.out.printf("Cycle #%d%n", i);
-		}
+			businessesAfloatPrevious = businessesAfloat;
+			businessesAfloat = 0;
+			peepsAfloatPrevious = peepsAfloat;
+			peepsAfloat = 0;
+			for (int i = 0; i <= MinWageMain.businessArray.length - 1; i++) {
+				if (MinWageMain.businessArray[i].isAfloat)
+					businessesAfloat++;
+			}
+			for (int i = 0; i <= MinWageMain.peepArray.length - 1; i++) {
+				if (MinWageMain.peepArray[i].isAfloat)
+					peepsAfloat++;
+			}
+			System.out.printf("Cycle #%d. Businesses Remaining: %d. Bankrupt this Cycle: %d%nPeople Remaining: %d. People Bankrupt this Cycle: %d%n", cycleCount, businessesAfloat, businessesAfloatPrevious - businessesAfloat, peepsAfloat, peepsAfloatPrevious - peepsAfloat);
+		} while (businessesAfloat > 1 && peepsAfloat > 1);
 		Math.math();
 
 	}

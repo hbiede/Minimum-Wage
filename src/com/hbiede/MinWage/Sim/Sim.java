@@ -18,11 +18,9 @@ public class Sim {
 		float cycleSpendingAmount;
 		float spentAmount;
 		int   cycleCount;
-		/** Business External income */
-		for (int i = 0; i <= MinWageMain.businessArray.length - 1; i++)
-			MinWageMain.businessArray[i].incomeDeposit(Reference.externalIncome);
+
+		/** Peep Payment */
 		for (int i = 0; i <= MinWageMain.peepArray.length - 1; i++) {
-			/** Peep Payment */
 			if (!(MinWageMain.peepArray[i].job == null)) {
 				if (MinWageMain.peepArray[i].job.bankBalance > MinWageMain.peepArray[i].wage) {
 					MinWageMain.peepArray[i].incomeDeposit(MinWageMain.peepArray[i].wage * Reference.workWeekLength);
@@ -30,11 +28,13 @@ public class Sim {
 					if (Reference.isDebugOn)
 						System.out.printf("Paid Peep #%d: $%d. Bank Balance: $%f. Paid from Business #%d. Bank Balance: $%f%n", i, MinWageMain.peepArray[i].wage * Reference.workWeekLength, MinWageMain.peepArray[i].bankBalance, MinWageMain.peepArray[i].job.refNumber, MinWageMain.peepArray[i].job.bankBalance);
 				} else {
-					System.out.printf("Business #%d is bankrupt. Balance: %f%n", MinWageMain.peepArray[i].job.refNumber, MinWageMain.peepArray[i].job.bankBalance);
+					if (Reference.isDebugOn)
+						System.out.printf("Business #%d is bankrupt. Balance: %f%n", MinWageMain.peepArray[i].job.refNumber, MinWageMain.peepArray[i].job.bankBalance);
 					MinWageMain.peepArray[i].job.isAfloat = false;
 				}
 				if (!MinWageMain.peepArray[i].job.isAfloat) {
-					System.out.printf("Peep #%d was laid off from business %d%n", i, MinWageMain.peepArray[i].job.refNumber);
+					if (Reference.isDebugOn)
+						System.out.printf("Peep #%d was laid off from business %d%n", i, MinWageMain.peepArray[i].job.refNumber);
 					MinWageMain.peepArray[i].job = null;
 					MinWageMain.peepArray[i].wage = 0;
 				}
@@ -64,9 +64,12 @@ public class Sim {
 					cycleCount++;
 				} while (spentAmount < spendingAmount && cycleCount < 5);
 			}
-			if (MinWageMain.peepArray[i].bankBalance <= 0) {
-				System.out.printf("Peep #%d is bankrupt.%n", i);
-				MinWageMain.peepArray[i].isAfloat = false;
+			if (MinWageMain.peepArray[i].isAfloat) {
+				if (MinWageMain.peepArray[i].bankBalance <= 0) {
+					if (Reference.isDebugOn)
+						System.out.printf("Peep #%d is bankrupt.%n", i);
+					MinWageMain.peepArray[i].isAfloat = false;
+				}
 			}
 		}
 	}

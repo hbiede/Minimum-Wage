@@ -34,12 +34,12 @@ public class Math {
 		System.out.printf("Number Peeps Survived on MinWage : %d%n%n", paidMinimum - bankruptFromMinimum);
 		System.out.printf("Percent Peeps Survived not on MinWage: %f%n", calcSurvivedNonmin());
 		System.out.printf("Number Peeps Survived not on MinWage : %d%n%n", paidNonmin - bankruptFromNonmin);
-		System.out.printf("Cycles: %d%n", Reference.cycleCount);
+		System.out.printf("Cycles: %d%n", MinWageMain.cycleCount);
 	}
 
 	/**
 	 * @param population Population to be averaged
-	 * @return
+	 * @return balance of all people divided by number of people (Average)
 	 */
 	public static float averageBankBalance(Entity[] population) {
 		float balanceSum = 0;
