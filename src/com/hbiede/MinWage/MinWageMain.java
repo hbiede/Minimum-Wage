@@ -1,6 +1,5 @@
 package com.hbiede.MinWage;
 
-import com.hbiede.MinWage.Sim.Math;
 import com.hbiede.MinWage.Sim.Sim;
 import com.hbiede.MinWage.entities.Business;
 import com.hbiede.MinWage.entities.Peep;
@@ -41,9 +40,10 @@ public class MinWageMain {
 				if (MinWageMain.peepArray[i].isAfloat)
 					peepsAfloat++;
 			}
-			System.out.printf("Cycle #%d. Businesses Remaining: %d. Bankrupt this Cycle: %d%nPeople Remaining: %d. People Bankrupt this Cycle: %d%n", cycleCount, businessesAfloat, businessesAfloatPrevious - businessesAfloat, peepsAfloat, peepsAfloatPrevious - peepsAfloat);
+			if (Reference.isDebugOn)
+				System.out.printf("Cycle #%d. Businesses Remaining: %d. Bankrupt this Cycle: %d%nPeople Remaining: %d. People Bankrupt this Cycle: %d%n", cycleCount, businessesAfloat, businessesAfloatPrevious - businessesAfloat, peepsAfloat, peepsAfloatPrevious - peepsAfloat);
 		} while (businessesAfloat > 1 && peepsAfloat > 1);
-		Math.math();
+		System.out.printf("Cycles: %d%n", cycleCount);
 
 	}
 
