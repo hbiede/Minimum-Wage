@@ -43,7 +43,7 @@ public class MinWageMain {
 			if (Reference.isDebugOn)
 				System.out.printf("Cycle #%d. Businesses Remaining: %d. Bankrupt this Cycle: %d%nPeople Remaining: %d. People Bankrupt this Cycle: %d%n", cycleCount, businessesAfloat, businessesAfloatPrevious - businessesAfloat, peepsAfloat, peepsAfloatPrevious - peepsAfloat);
 		} while (businessesAfloat > 1 && peepsAfloat > 1);
-		System.out.printf("Cycles: %d%n", cycleCount);
+		System.out.printf("Cycles: %d\n", cycleCount);
 
 	}
 
@@ -71,7 +71,7 @@ public class MinWageMain {
 			}
 			peepArray[i] = new Peep(randFrugality, randWage, businessArray[business]);
 			if (Reference.isDebugOn)
-				System.out.printf("Peep #%d, %d, $%d, Business #%d%n", i, randFrugality, randWage, business);
+				System.out.printf("Peep #%d, %d, $%d, Business #%d\n", i, randFrugality, randWage, business);
 		}
 	}
 }
