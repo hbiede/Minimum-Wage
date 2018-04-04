@@ -20,7 +20,7 @@ public class Sim {
 		int   cycleCount;
 
 		/** Peep Payment */
-		for (int i = 0; i <= MinWageMain.peepArray.length - 1; i++) {
+		for (int i = 0; i < MinWageMain.peepArray.length; i++) {
 			if (!(MinWageMain.peepArray[i].job == null)) {
 				if (MinWageMain.peepArray[i].job.bankBalance > MinWageMain.peepArray[i].wage) {
 					MinWageMain.peepArray[i].incomeDeposit(MinWageMain.peepArray[i].wage * Reference.workWeekLength);
