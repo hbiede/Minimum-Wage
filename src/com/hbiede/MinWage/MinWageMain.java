@@ -32,11 +32,11 @@ public class MinWageMain {
 			businessesAfloat = 0;
 			peepsAfloatPrevious = peepsAfloat;
 			peepsAfloat = 0;
-			for (int i = 0; i <= MinWageMain.businessArray.length - 1; i++) {
+			for (int i = 0; i < MinWageMain.businessArray.length; i++) {
 				if (MinWageMain.businessArray[i].isAfloat)
 					businessesAfloat++;
 			}
-			for (int i = 0; i <= MinWageMain.peepArray.length - 1; i++) {
+			for (int i = 0; i < MinWageMain.peepArray.length; i++) {
 				if (MinWageMain.peepArray[i].isAfloat)
 					peepsAfloat++;
 			}
@@ -48,7 +48,7 @@ public class MinWageMain {
 	}
 
 	private static void initBusinesses() {
-		for (int i = 0; i <= Reference.businessCount - 1; i++) {
+		for (int i = 0; i < Reference.businessCount; i++) {
 			businessArray[i] = new Business(i);
 			if (Reference.isDebugOn) System.out.println("Business #" + i);
 		}
